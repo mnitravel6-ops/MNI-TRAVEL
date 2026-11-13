@@ -53,7 +53,7 @@ exports.handler = async (event) => {
   // Validaciones
   if (!r.nombre || !r.telefono || !r.destino || !r.hora) return json(400, { error: 'Faltan datos de la reserva.' });
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(r.email)) return json(400, { error: 'El correo no es válido.' });
-  if (!(r.pasajeros >= 1 && r.pasajeros <= 6)) return json(400, { error: 'Los pasajeros deben ser entre 1 y 6.' });
+  if (!(r.pasajeros >= 1 && r.pasajeros <= 9)) return json(400, { error: 'Los pasajeros deben ser entre 1 y 9.' });
   if (!TRAYECTOS.includes(r.direccion)) return json(400, { error: 'Trayecto inválido.' });
   if (!/^\d{4}-\d{2}-\d{2}$/.test(r.fecha) || r.fecha < hoyEnChile()) {
     return json(400, { error: 'La fecha del traslado no es válida.' });
