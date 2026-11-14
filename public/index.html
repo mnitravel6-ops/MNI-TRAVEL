@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MNI Travel — Traslados aeropuerto a tu destino</title>
-<meta name="description" content="Traslados privados entre el Aeropuerto de Santiago y tu hotel o destino. Precio fijo, choferes bilingües y seguimiento de vuelo. Reserva online en 2 minutos.">
+<meta name="description" content="Traslados privados entre el Aeropuerto de Santiago y tu hotel o destino. Precio fijo, chofer asignado y seguimiento de vuelo. Reserva online en 2 minutos.">
 <meta property="og:title" content="MNI Travel — Traslados aeropuerto a tu destino">
-<meta property="og:description" content="Traslados privados entre el Aeropuerto de Santiago y tu hotel o destino. Precio fijo, choferes bilingües y seguimiento de vuelo.">
+<meta property="og:description" content="Traslados privados entre el Aeropuerto de Santiago y tu hotel o destino. Precio fijo, chofer asignado y seguimiento de vuelo.">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_CL">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%231F4B3F'/%3E%3Cpath d='M20 55 L38 40 L50 48 L68 32 L80 40' stroke='%23D9713C' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='30' cy='68' r='6' fill='%23fff'/%3E%3Ccircle cx='70' cy='68' r='6' fill='%23fff'/%3E%3C/svg%3E">
@@ -28,7 +28,7 @@
     --logo-terracota: #D9713C;
   }
   *{margin:0;padding:0;box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
+  html{scroll-behavior:smooth;scroll-padding-top:72px;}
   body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;line-height:1.6;}
   h1,h2,h3{font-family:'Baloo 2',sans-serif;font-weight:700;letter-spacing:-0.01em;}
   a{color:inherit;text-decoration:none;}
@@ -43,6 +43,12 @@
   .nav-links a:hover{color:var(--sky-dark);}
   .nav-cta{background:var(--coral);color:#fff;padding:11px 22px;border-radius:12px;font-size:0.86rem;font-weight:700;}
   .nav-cta:hover{background:#E38A57;}
+  .nav-actions{display:flex;align-items:center;gap:12px;}
+  .nav-toggle{display:none;width:44px;height:44px;padding:0;border:1.5px solid var(--line);border-radius:12px;background:#fff;cursor:pointer;flex-direction:column;align-items:center;justify-content:center;gap:5px;}
+  .nav-toggle span{display:block;width:20px;height:2px;background:var(--sky-dark);border-radius:2px;transition:transform .2s, opacity .2s;}
+  .nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0;}
+  .nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
 
   /* HERO with illustrated background scene */
   .hero{position:relative;overflow:hidden;padding:0;}
@@ -104,7 +110,7 @@
 
   /* FLEET */
   .fleet{background:var(--bg-soft);}
-  .fleet-grid{max-width:1160px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  .fleet-grid{max-width:820px;margin:0 auto;display:grid;grid-template-columns:repeat(2,1fr);gap:24px;}
   .fleet-card{background:#fff;border-radius:20px;overflow:hidden;border:1px solid var(--line);}
   .fleet-scene{width:100%;height:150px;display:block;}
   .fleet-body{padding:26px 24px;}
@@ -137,20 +143,6 @@
   .stat b{font-family:'Baloo 2',sans-serif;font-size:1.7rem;display:block;color:var(--coral);}
   .stat span{color:var(--muted);font-size:0.84rem;}
   .why-copy p{color:var(--muted);margin-top:14px;}
-
-  /* TESTIMONIALS */
-  .testimonials{background:var(--sky-dark);}
-  .testimonials .section-head h2{color:#fff;}
-  .testimonials .section-head p{color:#CFE3D9;}
-  .testimonials .section-head .eyebrow{background:rgba(255,255,255,0.15);color:#fff;}
-  .review-grid{max-width:1160px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
-  .review-card{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:18px;padding:26px;}
-  .stars{color:#F2B98C;font-size:0.9rem;margin-bottom:14px;letter-spacing:2px;}
-  .review-card p{color:rgba(255,255,255,0.85);font-size:0.9rem;margin-bottom:20px;}
-  .review-author{display:flex;align-items:center;gap:10px;}
-  .review-avatar{width:36px;height:36px;border-radius:50%;background:var(--coral);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-family:'Baloo 2',sans-serif;font-size:0.85rem;flex-shrink:0;}
-  .review-author b{font-size:0.88rem;color:#fff;display:block;}
-  .review-author span{font-size:0.76rem;color:rgba(255,255,255,0.55);}
 
   .booking{background:var(--bg-soft);}
   .booking .section-head h2{color:var(--sky-dark);}
@@ -196,12 +188,17 @@
     .hero-overlay{background:linear-gradient(180deg, rgba(31,75,63,0.5) 0%, rgba(31,75,63,0.92) 60%);align-items:flex-end;padding-bottom:40px;}
     .hero-stats-inner{grid-template-columns:repeat(2,1fr);}
     .hstat{border-bottom:1px solid var(--line);}
-    .nav-links{display:none;}
+    .nav{padding:12px 16px;}
+    .nav-cta{padding:10px 16px;}
+    .nav-toggle{display:flex;}
+    .nav-links{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 12px 24px rgba(31,75,63,0.10);padding:8px 24px 16px;font-size:1rem;}
+    .nav-links.open{display:flex;}
+    .nav-links a{padding:14px 0;border-bottom:1px solid var(--line);}
+    .nav-links a:last-child{border-bottom:none;}
     .steps{grid-template-columns:1fr;}
     .service-grid{grid-template-columns:1fr;}
     .fleet-grid{grid-template-columns:1fr;}
     .why{grid-template-columns:1fr;}
-    .review-grid{grid-template-columns:1fr;}
     .form-row{grid-template-columns:1fr;}
     .footer-grid{grid-template-columns:1fr;}
   }
@@ -212,14 +209,19 @@
 <header>
   <nav class="nav">
     <div class="logo">MNI <span>Travel</span></div>
-    <div class="nav-links">
+    <div class="nav-links" id="navLinks">
       <a href="#servicios">Servicios</a>
       <a href="#flota">Flota</a>
       <a href="#reservar">Reservar</a>
       <a href="#contacto">Contacto</a>
       <a href="#faq">Preguntas Frecuentes</a>
     </div>
-    <a href="#reservar" class="nav-cta">Reservar</a>
+    <div class="nav-actions">
+      <a href="#reservar" class="nav-cta">Reservar</a>
+      <button class="nav-toggle" id="navToggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="navLinks">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </nav>
 </header>
 
@@ -283,8 +285,8 @@
 <div class="hero-stats">
   <div class="hero-stats-inner">
     <div class="hstat"><b>24/7</b><span>Disponibilidad</span></div>
-    <div class="hstat"><b>100%</b><span>Puntualidad</span></div>
-    <div class="hstat"><b>ES/EN</b><span>Choferes bilingües</span></div>
+    <div class="hstat"><b>Chofer</b><span>Esperándote al llegar</span></div>
+    <div class="hstat"><b>Precio fijo</b><span>Sabes cuánto pagas antes de viajar</span></div>
     <div class="hstat"><b>Desde $26.000</b><span>Tarifa mínima</span></div>
   </div>
 </div>
@@ -367,7 +369,7 @@
       <div class="service-card-body">
         <span class="service-tag">Grupos</span>
         <h3>Vans para familias</h3>
-        <p>Capacidad de hasta 8 pasajeros, ideal para familias o grupos de amigos.</p>
+        <p>Capacidad de hasta 9 pasajeros, ideal para familias o grupos de amigos.</p>
       </div>
     </div>
   </div>
@@ -377,31 +379,9 @@
   <div class="section-head">
     <span class="eyebrow">Nuestra flota</span>
     <h2>El vehículo justo para cada grupo</h2>
-    <p>Toda nuestra flota está asegurada y se revisa antes de cada viaje.</p>
+    <p>Vehículos propios, pensados para que viajes cómodo.</p>
   </div>
   <div class="fleet-grid">
-    <div class="fleet-card">
-      <svg class="fleet-scene" viewBox="0 0 400 150" xmlns="http://www.w3.org/2000/svg">
-        <rect width="400" height="150" fill="#E8F0EC"/>
-        <rect y="112" width="400" height="38" fill="#D9E9E1"/>
-        <path d="M70,105 L95,72 L145,68 L170,80 L300,80 L300,105 Z" fill="#1F4B3F"/>
-        <rect x="105" y="76" width="34" height="22" fill="#E8F0EC"/>
-        <circle cx="115" cy="112" r="15" fill="#22262B"/>
-        <circle cx="255" cy="112" r="15" fill="#22262B"/>
-        <circle cx="115" cy="112" r="6" fill="#8A8A85"/>
-        <circle cx="255" cy="112" r="6" fill="#8A8A85"/>
-      </svg>
-      <div class="fleet-body">
-        <h3>Sedán ejecutivo</h3>
-        <span class="fleet-cap">Hasta 3 pasajeros</span>
-        <p>Ideal para viajeros individuales o parejas que buscan comodidad y discreción.</p>
-        <ul class="fleet-feats">
-          <li>2 maletas grandes + 1 de mano</li>
-          <li>Aire acondicionado</li>
-          <li>Asiento infantil disponible</li>
-        </ul>
-      </div>
-    </div>
     <div class="fleet-card">
       <svg class="fleet-scene" viewBox="0 0 400 150" xmlns="http://www.w3.org/2000/svg">
         <rect width="400" height="150" fill="#FBEAE0"/>
@@ -416,13 +396,12 @@
         <circle cx="270" cy="112" r="6" fill="#8A8A85"/>
       </svg>
       <div class="fleet-body">
-        <h3>Van familiar</h3>
-        <span class="fleet-cap">Hasta 6 pasajeros</span>
-        <p>Espacio de sobra para familias o grupos pequeños con equipaje adicional.</p>
+        <h3>Minivan Maxus G10</h3>
+        <span class="fleet-cap">Hasta 7 pasajeros</span>
+        <p>Cómoda para familias o grupos medianos que viajan juntos.</p>
         <ul class="fleet-feats">
-          <li>6 maletas grandes</li>
           <li>Aire acondicionado</li>
-          <li>Espacio para coche de bebé</li>
+          <li>Silla para niños (indícalo al reservar)</li>
         </ul>
       </div>
     </div>
@@ -441,13 +420,12 @@
         <circle cx="300" cy="112" r="6" fill="#8A8A85"/>
       </svg>
       <div class="fleet-body">
-        <h3>Van grupal</h3>
-        <span class="fleet-cap">Hasta 10 pasajeros</span>
-        <p>Pensada para grupos grandes, delegaciones o traslados corporativos.</p>
+        <h3>Hyundai Staria</h3>
+        <span class="fleet-cap">Hasta 9 pasajeros</span>
+        <p>Pensada para grupos grandes que quieren viajar juntos en un solo vehículo.</p>
         <ul class="fleet-feats">
-          <li>10 maletas grandes</li>
           <li>Aire acondicionado</li>
-          <li>Chofer bilingüe incluido</li>
+          <li>Silla para niños (indícalo al reservar)</li>
         </ul>
       </div>
     </div>
@@ -458,13 +436,13 @@
   <div class="why-copy">
     <span class="eyebrow" style="display:inline-block;background:var(--coral-soft);color:var(--coral);font-size:0.8rem;font-weight:700;padding:7px 14px;border-radius:20px;margin-bottom:20px;">Por qué elegirnos</span>
     <h2>Simple, cálido y transparente</h2>
-    <p>Sabemos que llegar a un país nuevo puede ser estresante. Por eso nuestros choferes hablan español e inglés, monitorean tu vuelo y el precio que ves antes de reservar es el que pagas al llegar.</p>
+    <p>Sabemos que llegar a un país nuevo puede ser estresante. Por eso monitoreamos tu vuelo, y el precio que ves antes de reservar es el precio final de tu traslado.</p>
   </div>
   <div class="why-stats">
     <div class="stat"><b>24/7</b><span>Recepción todos los días del año</span></div>
     <div class="stat"><b>Precio fijo</b><span>Sin recargos sorpresa</span></div>
-    <div class="stat"><b>ES/EN</b><span>Choferes bilingües</span></div>
-    <div class="stat"><b>0 CLP</b><span>Espera sin costo si tu vuelo se atrasa</span></div>
+    <div class="stat"><b>Chofer asignado</b><span>Con sus datos antes de tu vuelo</span></div>
+    <div class="stat"><b>1 hora</b><span>De espera sin costo si tu vuelo se atrasa</span></div>
   </div>
 </section>
 
@@ -473,46 +451,11 @@
     <span class="eyebrow">Sobre nosotros</span>
     <h2>Un servicio pensado desde la experiencia de viajar</h2>
   </div>
-  <p>MNI Travel nació para resolver algo simple: que llegar a Santiago no sea una fuente de estrés. Sabemos lo que se siente bajar de un vuelo largo sin saber si alguien te está esperando, así que armamos un servicio donde cada detalle — el seguimiento del vuelo, el precio fijo, el chofer bilingüe — está pensado para que tu llegada sea la parte más fácil del viaje, no la más incierta.</p>
+  <p>MNI Travel nació para resolver algo simple: que llegar a Santiago no sea una fuente de estrés. Sabemos lo que se siente bajar de un vuelo largo sin saber si alguien te está esperando, así que armamos un servicio donde cada detalle — el seguimiento del vuelo, el precio fijo, un chofer asignado — está pensado para que tu llegada sea la parte más fácil del viaje, no la más incierta.</p>
   <p>Operamos en Santiago y alrededores, con cobertura a la mayoría de las comunas y también a destinos como Valparaíso, Viña del Mar y los principales centros de esquí y viñas de la zona central.</p>
   <div class="about-badges">
-    <span class="about-badge">🚐 Flota propia asegurada</span>
-    <span class="about-badge">🌎 Choferes bilingües</span>
+    <span class="about-badge">🚐 Flota propia</span>
     <span class="about-badge">📍 Cobertura Santiago y zona central</span>
-  </div>
-</section>
-
-<section class="testimonials">
-  <div class="section-head">
-    <span class="eyebrow">Testimonios</span>
-    <h2>Lo que dicen nuestros pasajeros</h2>
-    <p>La confianza de quienes ya viajaron con nosotros.</p>
-  </div>
-  <div class="review-grid">
-    <div class="review-card">
-      <div class="stars">★★★★★</div>
-      <p>"Llegamos de madrugada y el chofer ya estaba esperando con el cartel. Todo tal cual lo reservamos, sin sorpresas."</p>
-      <div class="review-author">
-        <div class="review-avatar">CM</div>
-        <div><b>Carolina M.</b><span>Traslado aeropuerto</span></div>
-      </div>
-    </div>
-    <div class="review-card">
-      <div class="stars">★★★★★</div>
-      <p>"Viajamos en grupo de 6 y la van fue súper cómoda. El chofer hablaba inglés y nos ayudó con todo el equipaje."</p>
-      <div class="review-author">
-        <div class="review-avatar">AR</div>
-        <div><b>Andrés R.</b><span>Grupo familiar</span></div>
-      </div>
-    </div>
-    <div class="review-card">
-      <div class="stars">★★★★★</div>
-      <p>"Nuestro vuelo se atrasó casi dos horas y el chofer siguió esperando sin cobrar extra. Muy recomendable."</p>
-      <div class="review-author">
-        <div class="review-avatar">VL</div>
-        <div><b>Valentina L.</b><span>Traslado aeropuerto</span></div>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -524,11 +467,11 @@
   <div class="faq-list">
     <details class="faq-item">
       <summary>¿Qué pasa si mi vuelo se atrasa?</summary>
-      <p>Monitoreamos tu vuelo en tiempo real, así que tu chofer ajusta la hora de llegada automáticamente. La espera no tiene costo adicional si el atraso se debe al vuelo.</p>
+      <p>Monitoreamos tu vuelo en tiempo real, así que tu chofer ajusta la hora de llegada automáticamente. Esperamos sin costo adicional hasta 1 hora si tu vuelo se atrasa.</p>
     </details>
     <details class="faq-item">
       <summary>¿Puedo cancelar o cambiar mi reserva?</summary>
-      <p>Sí, puedes modificar o cancelar tu reserva sin costo hasta 24 horas antes del traslado. Cambios con menos anticipación se evalúan según disponibilidad.</p>
+      <p>Sí, puedes modificar o cancelar tu reserva sin costo hasta 24 horas antes del traslado. Si cancelas a tiempo, se te devuelve el abono. Cambios o cancelaciones con menos anticipación se evalúan caso a caso.</p>
     </details>
     <details class="faq-item">
       <summary>¿Qué medios de pago aceptan?</summary>
@@ -544,7 +487,7 @@
     </details>
     <details class="faq-item">
       <summary>¿Tienen sillas para niños?</summary>
-      <p>Sí, cuentan con disponibilidad limitada — indícalo en el campo de notas al reservar para asegurar que tengamos una lista para tu viaje.</p>
+      <p>Sí. Indícalo en el campo de notas al reservar y la dejamos lista para tu viaje.</p>
     </details>
   </div>
 </section>
@@ -575,8 +518,8 @@
           <input type="tel" id="telefono" name="telefono" required>
         </div>
         <div class="field">
-          <label for="pasajeros">N° de pasajeros (máx. 6)</label>
-          <input type="number" id="pasajeros" name="pasajeros" min="1" max="6" required>
+          <label for="pasajeros">N° de pasajeros (máx. 9)</label>
+          <input type="number" id="pasajeros" name="pasajeros" min="1" max="9" required>
         </div>
       </div>
       <div class="form-row">
@@ -603,7 +546,7 @@
       </div>
       <div class="form-row">
         <div class="field full" id="priceBox" style="display:none;background:var(--sky-soft);border-radius:12px;padding:16px 18px;margin-bottom:2px;">
-          <span style="font-size:0.8rem;color:var(--muted);font-weight:600;">Tarifa del trayecto (minivan hasta 6 pasajeros)</span>
+          <span style="font-size:0.8rem;color:var(--muted);font-weight:600;">Tarifa del trayecto (hasta 9 pasajeros)</span>
           <div style="display:flex;align-items:baseline;gap:6px;">
             <span id="priceValue" style="font-family:'Baloo 2',sans-serif;font-size:1.6rem;font-weight:700;color:var(--sky-dark);">$0</span>
             <span style="font-size:0.78rem;color:var(--muted);">CLP</span>
@@ -680,7 +623,7 @@
   document.getElementById('fecha').min = new Date().toISOString().split('T')[0];
 
   // --- TARIFARIO MNI TRAVEL (basado en TARIFARIO_MINIVAN_PROVEEDORES.xlsx) ---
-  // Minivan Ejecutiva 6 PAX · Precio ida o regreso, mismo valor en ambos sentidos
+  // Mismo precio para la Maxus G10 (hasta 7) y la Hyundai Staria (hasta 9) · ida o regreso, mismo valor en ambos sentidos
   const COMUNAS_SANTIAGO = [
     {nombre:"Cerrillos", precio:26000},
     {nombre:"Cerro Navia", precio:26000},
@@ -795,6 +738,23 @@
       priceBox.style.display = 'none';
     }
   });
+
+  // --- Menú en celular ---
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  function cerrarMenu() {
+    navLinks.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+    navToggle.setAttribute('aria-label', 'Abrir menú');
+  }
+  navToggle.addEventListener('click', function () {
+    const abierto = navLinks.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', String(abierto));
+    navToggle.setAttribute('aria-label', abierto ? 'Cerrar menú' : 'Abrir menú');
+  });
+  navLinks.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', cerrarMenu); });
+  document.addEventListener('keydown', function (ev) { if (ev.key === 'Escape') cerrarMenu(); });
+  window.addEventListener('resize', function () { if (window.innerWidth > 820) cerrarMenu(); });
 
   // --- Envío: crea la orden de pago en Flow y redirige al cliente ---
   const form = document.getElementById('bookingForm');
